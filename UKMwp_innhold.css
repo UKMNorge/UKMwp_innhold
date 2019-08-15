@@ -1,0 +1,69 @@
+/** EN GITT ARTIKKEL */
+.article {
+    background: #fff;
+}
+#pageWrapper {
+    margin-top: 1.5em;
+}
+.article .grid_post_image {
+    margin-left: -1em;
+    width: Calc( 100% + 2em);
+}
+
+
+
+.commentContainer {
+    margin-bottom: 0px !important;
+}
+.commentContainer textarea {
+    margin-bottom: 0px;
+}
+
+.postByContainer {
+    margin: .4em;
+    font-style: italic;
+    color: #999;
+    text-align: right;
+}
+.submitContainer {
+    text-align: right;
+}
+
+.article ul, 
+.article ol {
+    margin-left: 2em;
+}
+
+/** NYHETER PÅ FORSDEIN */
+.news {
+    background: #fff;
+    padding: .7em;
+}
+
+.news .likeCountContainer,
+.news .commentCountContainer {
+    font-size: .7em;
+    margin-left: .3em;
+}
+
+.news .meta {
+    margin: .7em -.8em;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: .3em .7em;
+    background: #f9f7f7;
+}
+.news .grid_post_image {
+    margin: -.7em;
+    margin-bottom: .7em;
+    width: Calc( 100% + 1.4em);
+}
+.news .header {
+    min-height: 2.8em;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.news .leadContainer {
+    min-height: 4.5em;
+}

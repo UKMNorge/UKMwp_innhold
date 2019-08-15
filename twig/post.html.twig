@@ -1,0 +1,90 @@
+<div class="container-fluid" id="pageWrapper">
+	<div class="row">
+		<div class="col-xs-12 col-md-8 article">
+
+			<div class="grid_post_image" style="background-image: url('{{post.image.url}}');"></div>
+			<h2>{{post.title|raw}}</h2>
+			<p class="lead">{{ post.lead|raw }}</p>
+			{{post.content|raw}}
+		</div>
+
+		<div class="col-xs-12 col-md-4">
+			<div class="meta" style="float: right; margin-top: .65em;">
+				<div class="likeAction" data-blog-id="{{ post.arrangor.getBlogId() }}" data-post-id="{{ post.arrangor.getPostId() }}">
+						<a href="#like-{{ post.arrangor.getId() }}" class="doLike"><img src="/wp-content/plugins/UKMwp_dashboard/img/icon-like-{{ post.arrangor.hasLiked( current_user ) ? 'full' : 'medium' }}.png" class="likeIcon" width="20" style="margin-top:-5px;">
+							Liker</a>
+						<span class="likeCountContainer">(<span class="likeCount">{{ post.arrangor.getLikeCount() }}</span>)</span>
+					</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<h4>KOMMENTARER <small>({{ post.arrangor.getCommentCount()}})</small></h4>
+
+
+            <script>
+                var tribute = new Tribute({
+                    values: [
+                        {% for user in post.arrangor.getCommenters() %}
+                            {key: '{{ user.username }}', value: '{{ user.name }}'},
+                        {% endfor %}
+                        {key: 'Alle som har kommentert', value: 'channel'}
+                    ]
+                });
+
+                $(document).ready( function(){
+                    tribute.attach(document.getElementById('comment'));
+                });
+            </script>
+
+			<ol class="list-unstyled">
+				
+				<li class="panel panel-default">
+					<div class="panel-body newComment">
+						<form action="?post={{ post.arrangor.getPostId() }}#kommentarer" method="POST">
+							<input type="hidden" name="post_id" value="{{ post.arrangor.getPostId() }}" />
+							<input type="hidden" name="blog_id" value="{{ post.arrangor.getBlogId() }}" />
+							<input type="hidden" name="post_title" value="{{ post.title }}" />
+
+							<div class="form-group commentContainer">
+								<textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Skriv din kommentar her..."></textarea>
+							</div>
+
+							<p class="small postByContainer">
+								Kommentaren postes som {{ current_user_name }}, og er kun synlig for innloggede personer.
+							</p>
+							<div class="form-group submitContainer" style="margin-bottom: 0px;">
+								<button type="submit" class="btn btn-success">Kommentér</button>
+							</div>
+						</form>
+					</div>
+				</li>
+				
+				{% for comment in post.arrangor.getComments() %}	
+					<li class="panel panel-default">
+						<div class="panel-body">
+							{{ comment.text }}
+						</div>
+						<div class="panel-footer small" align="right">
+							{% if comment.getAuthorId() == current_user %}
+								<div class="float-left pull-left small">
+									<a href="?post={{ post.arrangor.getPostId() }}&blog_id={{ post.arrangor.getBlogId() }}&comment={{ comment.getId() }}&action=delete">slett</a>
+								</div>
+							{% endif %}
+							Skrevet av {{ comment.author }}
+							<div class="clearfix"></div>
+						</div>
+					</li>
+				{% else %}
+					<li class="small text-muted" style="margin-top:-1em">
+						Du kan bli den første til å kommentere :)
+					</li>
+				{% endfor %}
+			</ol>
+		</div>
+	</div>
+</div>
+
+<div class="clearfix"></div>
+<p style="margin-top: 1em;">
+	<a href="index.php" class="btn btn-default">Tilbake til startsiden</a>
+</p>

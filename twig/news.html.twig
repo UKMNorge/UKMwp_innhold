@@ -1,0 +1,43 @@
+{% if post.meta.redirect is defined %}
+	{% set link = post.meta.redirect %}
+	{% set target = 'target="_blank"' %}
+{% elseif GET('page') is not empty %}
+	{% set link = 'admin.php?page='~ GET('page') ~ '&post='~ post.ID %}
+	{% set target = '' %}
+{% else %}
+	{% set link = 'index.php?post='~ post.ID %}
+	{% set target = '' %}
+{% endif %}
+
+<div class="clickChild news">
+	<div class="grid_post_image" style="background-image: url('{{post.image.url}}');"></div>
+		
+	<div class="header">
+		<a href="{{ link }}" {{ target }} class="clickMe">{{post.title|raw}}</a>
+	</div>
+
+	<div class="story">
+		<div class="meta">
+			<div class="post-com-count-wrapper" style="float: right;">
+				<a href="{{ link }}#kommentarer" {{ target }} class="doComment">
+					<img src="/wp-content/plugins/UKMwp_dashboard/img/icon-comment-line.png" width="20" style="margin-top:-5px;">
+					Kommenter
+				</a>
+				<span class="commentCountContainer">(<span class="commentCount">{{ post.arrangor.getCommentCount() }}</span>)</span>
+			</div>
+	
+			<div class="likeAction" data-blog-id="{{ post.arrangor.getBlogId() }}" data-post-id="{{ post.arrangor.getPostId() }}">
+				<a href="#like-{{ post.arrangor.getId() }}" class="doLike"><img src="/wp-content/plugins/UKMwp_dashboard/img/icon-like-{{ post.arrangor.hasLiked( current_user ) ? 'full' : 'medium' }}.png" class="likeIcon" width="20" style="margin-top:-5px;">
+					Liker</a>
+				<span class="likeCountContainer">(<span class="likeCount">{{ post.arrangor.getLikeCount() }}</span>)</span>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="leadContainer">
+			<p>{{post.lead|raw}}</p>
+		</div>
+
+	</div>
+</div>
+

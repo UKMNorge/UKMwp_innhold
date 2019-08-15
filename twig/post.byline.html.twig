@@ -1,0 +1,17 @@
+<p>Publisert: {{post_date|date('d.M')}} av</p>
+<div class="well post_byline">
+		<img src="{{post.author.image}}" />
+        <span><p>{{post.author.company_name}}</p></span> 
+        <span><a href="{{ post.author.link }}"><h4>{{post.author.display_name}}</h4></a></span>
+        <hr />
+        {% if post.author.user_email %}
+            <span class="glyphicon glyphicon-envelope"></span>
+            <span><a href="mailto:{{post.author.user_email}}">E-post</a> | </span>
+        {% endif %}
+        
+        {% if post.author.facebook_url %}
+            <span><a href="{{post.author.facebook_url}}">Facebook</a></span>
+        {% endif %}
+        
+        <div class="clearfix"></div>
+</div>
