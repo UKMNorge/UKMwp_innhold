@@ -1,8 +1,9 @@
 <?php
 
-use UKMNorge\Arrangor\Nyhet;
+use UKMNorge\Wordpress\Nyhet;
 
-require_once('UKM/Arrangor/nyhet.class.php');
+require_once('UKM/Autoloader.php');
+require_once('UKM/mail.class.php');
 
 if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 	if( isset( $_POST['comment'] ) ) {
@@ -42,7 +43,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         }
         $epost->text( $melding );
 
-        $epost->ok();
+        if( UKM_HOSTNAME != 'ukm.dev') {
+            $epost->ok();
+        }
     }
 }
 

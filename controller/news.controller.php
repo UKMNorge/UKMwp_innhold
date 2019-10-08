@@ -1,11 +1,11 @@
 <?php
 
-use UKMNorge\Arrangor\Nyhet;
+use UKMNorge\Wordpress\Nyhet;
 
 $ID_ARRANGOR = get_blog_id_from_url( UKM_HOSTNAME, '/arrangor/');
 $TWIGdata['image_path'] = '//arrangor.ukm.no/';
 
-require_once('UKM/Arrangor/nyhet.class.php');
+require_once('UKM/Autoloader.php');
 require_once('WPOO/WPOO/Post.php');
 require_once('WPOO/WPOO/Author.php');
 

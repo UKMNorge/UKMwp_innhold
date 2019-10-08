@@ -8,10 +8,11 @@ Version: 1.0
 Author URI: http://mariusmandal.no
 */
 
-use UKMNorge\Arrangor\Nyhet;
+use UKMNorge\Wordpress\Nyhet;
 
 define('UKM_WP_INNHOLD_PATH', dirname(__FILE__) .'/');
 
+require_once('UKM/Autoloader.php');
 require_once('UKM/wp_modul.class.php');
 
 class UKMwp_innhold extends UKMWPmodul
@@ -28,7 +29,7 @@ class UKMwp_innhold extends UKMWPmodul
 	{
 		add_action(
 			'wp_ajax_UKMwp_innhold_ajax', 
-			'UKMwp_innhold', 'ajax'
+			['UKMwp_innhold', 'ajax']
 		);
 
 		wp_enqueue_script(
@@ -59,7 +60,6 @@ class UKMwp_innhold extends UKMWPmodul
 	 */
 	public static function ajax()
 	{
-		require_once('UKM/Arrangor/nyhet.class.php');
 		$news = new Nyhet($_POST['blog_id'], $_POST['post_id']);
 
 		global $current_user;
