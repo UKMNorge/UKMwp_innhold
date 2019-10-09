@@ -8,14 +8,14 @@ Version: 1.0
 Author URI: http://mariusmandal.no
 */
 
+use UKMNorge\Wordpress\Modul;
 use UKMNorge\Wordpress\Nyhet;
 
 define('UKM_WP_INNHOLD_PATH', dirname(__FILE__) .'/');
 
 require_once('UKM/Autoloader.php');
-require_once('UKM/wp_modul.class.php');
 
-class UKMwp_innhold extends UKMWPmodul
+class UKMwp_innhold extends Modul
 {
 	public static $action = 'innhold';
 	public static $path_plugin = null;
