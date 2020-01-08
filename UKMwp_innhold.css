@@ -53,10 +53,19 @@
     padding: .3em .7em;
     background: #f9f7f7;
 }
-.news .grid_post_image {
+
+.grid_post_image{
+	width: 100%;
+	padding-top: 66%;
+    width: Calc( 100% + 1.4em);
     margin: -.7em;
     margin-bottom: .7em;
-    width: Calc( 100% + 1.4em);
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 .news .header {
     min-height: 2.8em;
