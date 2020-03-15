@@ -13,7 +13,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		$news = new Nyhet( $_POST['blog_id'], $_POST['post_id'] );
 		$res = $news->doComment( $current_user->ID, $current_user_name, $_POST['comment'] );
 
-        $melding = $_POST['comment'];
+        $melding = $_POST['comment'] .
+            "\r\n\r\n".
+            '@'. $user['username'] .' har kommentert på '. $_POST['post_title'];
         $sendtoall = strpos( $_POST['comment'], '@channel' ) !== false;
 
 		require_once('UKM/mail.class.php');
