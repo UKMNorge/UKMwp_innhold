@@ -14,8 +14,16 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 		$res = $news->doComment( $current_user->ID, $current_user_name, $_POST['comment'] );
 
         $melding = $_POST['comment'] .
-            "\r\n\r\n".
-            '@'. $user['username'] .' har kommentert på '. $_POST['post_title'];
+            '<p>&nbsp;</p>'.
+            '<hr />'.
+            '<p>'.
+                '<code>@'. $current_user->data->user_login .'</code> har kommentert på '. $_POST['post_title'] .
+                '<br />'.
+                '<a href="https://'. UKM_HOSTNAME .'/wp-admin/user/index.php?post='. $_POST['post_id'].'">'.
+                    'https://'. UKM_HOSTNAME .'/wp-admin/user/index.php?post='. $_POST['post_id'].
+                '</a>'.
+            '</p>'
+            ;
         $sendtoall = strpos( $_POST['comment'], '@channel' ) !== false;
 
 		require_once('UKM/mail.class.php');
@@ -39,7 +47,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
         if( $gotMentions ) {
             $mentionList = rtrim( $mentionList, ', ' );
-            $melding .= '<p>&nbsp;</p>'.
+            $melding .= 
                 '<hr />'.
                 '<p>E-postvarsel er sendt til '. $mentionList .'</p>';
         }
