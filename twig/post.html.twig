@@ -11,7 +11,7 @@
 		<div class="col-xs-12 col-md-4">
 			<div class="meta" style="float: right; margin-top: .65em;">
 				<div class="likeAction" data-blog-id="{{ post.arrangor.getBlogId() }}" data-post-id="{{ post.arrangor.getPostId() }}">
-						<a href="#like-{{ post.arrangor.getId() }}" class="doLike"><img src="/wp-content/plugins/UKMwp_dashboard/img/icon-like-{{ post.arrangor.hasLiked( current_user ) ? 'full' : 'medium' }}.png" class="likeIcon" width="20" style="margin-top:-5px;">
+						<a href="#like-{{ post.arrangor.getId() }}" class="doLike"><img src="/wp-content/plugins/UKMwp_dashboard/img/icon-like-{{ post.arrangor.hasLiked( current_user.ID ) ? 'full' : 'medium' }}.png" class="likeIcon" width="20" style="margin-top:-5px;">
 							Liker</a>
 						<span class="likeCountContainer">(<span class="likeCount">{{ post.arrangor.getLikeCount() }}</span>)</span>
 					</div>
@@ -65,7 +65,7 @@
 							{{ comment.text }}
 						</div>
 						<div class="panel-footer small" align="right">
-							{% if comment.getAuthorId() == current_user %}
+							{% if comment.getAuthorId() == current_user.ID %}
 								<div class="float-left pull-left small">
 									<a href="?post={{ post.arrangor.getPostId() }}&blog_id={{ post.arrangor.getBlogId() }}&comment={{ comment.getId() }}&action=delete">slett</a>
 								</div>
