@@ -40,7 +40,9 @@ class UKMwp_innhold extends Modul
 		wp_register_style(
 			'UKMwp_innhold_style',
 			plugin_dir_url(__FILE__) . 'UKMwp_innhold.css'
-		);
+        );
+        
+        wp_enqueue_style('WPgallery_css');
 	}
 
 	/**
