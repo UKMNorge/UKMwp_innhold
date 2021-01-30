@@ -10,8 +10,6 @@
     width: Calc( 100% + 2em);
 }
 
-
-
 .commentContainer {
     margin-bottom: 0px !important;
 }
@@ -67,6 +65,12 @@
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+figure.wp-block-image img {
+    width: Calc( 100% + 2em);
+    margin-left: -1em;
+}
+
 .news .header {
     min-height: 2.8em;
     font-size: 1.7rem;
