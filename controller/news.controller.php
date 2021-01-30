@@ -24,6 +24,9 @@ if(isset($_GET['post'])) {
 } else {
 	$page = isset($_GET['pagination']) ? $_GET['pagination'] : 1;
 	$limit = isset($_GET['limit']) ? $_GET['limit'] : $num_on_frontpage;
+	if( !isset($POST_QUERY) && isset($_GET['category'])) {
+		$POST_QUERY = $_GET['category'];
+	}
 	if ($page > 1) {
 		$limit = 12;
 		$offset = $limit*($page-1)-$num_on_frontpage; // 6 stk på forsiden
@@ -50,4 +53,5 @@ if(isset($_GET['post'])) {
 		$TWIGdata['news'][] = $wpoo_post;
 	}
 }
+UKMwp_innhold::addViewData($TWIGdata);
 restore_current_blog();

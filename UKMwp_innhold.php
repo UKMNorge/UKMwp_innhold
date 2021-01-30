@@ -37,12 +37,27 @@ class UKMwp_innhold extends Modul
 			plugin_dir_url(__FILE__)  . 'js/wp_innhold.js'
 		);
 
+		static::hookInnholdCss();
+        
+        wp_enqueue_style('WPgallery_css');
+	}
+
+	/**
+	 * Pass på at vi laster inn css for innhold
+	 * 
+	 * returnerer navn på style, slik at du kan kjøre
+	 * wp_enqueue_style(
+	 *		UKMwp_innhold::hookInnholdCss()
+	 *	);
+	 *
+	 * @return string wp_enqueue_style(hookname)
+	 */
+	public static function hookInnholdCss() {
 		wp_register_style(
 			'UKMwp_innhold_style',
 			plugin_dir_url(__FILE__) . 'UKMwp_innhold.css'
-        );
-        
-        wp_enqueue_style('WPgallery_css');
+		);
+		return 'UKMwp_innhold_style';
 	}
 
 	/**

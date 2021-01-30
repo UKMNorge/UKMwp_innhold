@@ -1,21 +1,30 @@
-<div class="row">
-	<div class="col-xs-12 col-lg-8">
-		{% block content %}
-		<h1>{{post.title}}</h1>
-		<article>
-			<div class="page">
-				{{post.content|raw}}
-			</div>
-		</article>
-		{% endblock %}
-		
-		{% block post_content %}
-			<div class="pull-right lastupdated">
-				<em>
-		        Sist oppdatert 
-		        <span class="timeago" title="{{post.date|date('Y-m-d H:i:s')}}">{{post.date|date('d.m.Y H:i')}}</span>
-				</em>
-			</div>
-		{% endblock %}
+{% if page is not defined and post is defined %}
+	{% set post = page %}
+{% endif %}
+<div class="mt-1" style="width: 95%; max-width: 1024px;">
+    <div class="row" style="padding-left:6px;">
+		<div class="col-xs-12 col-lg-8">
+			{% block content %}
+			<h1>{{page.title}}</h1>
+			<article>
+				<div class="page">
+					{% if page.content is empty and page.raw.post_content is not empty %}
+						{{page.raw.post_content|raw}}
+					{% else %}
+						{{ page.content|raw }}
+					{% endif %}
+				</div>
+			</article>
+			{% endblock %}
+			
+			{% block post_content %}
+				<div class="pull-right lastupdated">
+					<em>
+					Sist oppdatert 
+					<span class="timeago" title="{{page.date|date('Y-m-d H:i:s')}}">{{page.date|date('d.m.Y H:i')}}</span>
+					</em>
+				</div>
+			{% endblock %}
+		</div>
 	</div>
 </div>

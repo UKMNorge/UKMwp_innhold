@@ -18,13 +18,15 @@
 
 	<div class="story">
 		<div class="meta">
-			<div class="post-com-count-wrapper" style="float: right;">
-				<a href="{{ link }}#kommentarer" {{ target }} class="doComment">
-					<img src="/wp-content/plugins/UKMwp_dashboard/img/icon-comment-line.png" width="20" style="margin-top:-5px;">
-					Kommenter
-				</a>
-				<span class="commentCountContainer">(<span class="commentCount">{{ post.arrangor.getCommentCount() }}</span>)</span>
-			</div>
+			{% if post.meta.redirect is not defined %}
+				<div class="post-com-count-wrapper" style="float: right;">
+					<a href="{{ link }}#kommentarer" {{ target }} class="doComment">
+						<img src="/wp-content/plugins/UKMwp_dashboard/img/icon-comment-line.png" width="20" style="margin-top:-5px;">
+						Kommenter
+					</a>
+					<span class="commentCountContainer">(<span class="commentCount">{{ post.arrangor.getCommentCount() }}</span>)</span>
+				</div>
+			{% endif %}
 	
 			<div class="likeAction" data-blog-id="{{ post.arrangor.getBlogId() }}" data-post-id="{{ post.arrangor.getPostId() }}">
 				<a href="#like-{{ post.arrangor.getId() }}" class="doLike"><img src="/wp-content/plugins/UKMwp_dashboard/img/icon-like-{{ post.arrangor.hasLiked( current_user.ID ) ? 'full' : 'medium' }}.png" class="likeIcon" width="20" style="margin-top:-5px;">

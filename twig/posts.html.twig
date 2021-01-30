@@ -1,0 +1,38 @@
+{% if post is defined %}
+    {% include "post.html.twig" %}
+{% else %}
+<div class="mt-5" style="width: 95%; max-width: 1024px;">
+    <div class="row" style="padding-left:6px;">
+        {% for post in news %}
+            <div class="col-xs-6">
+                {% embed "news.html.twig" %}{% endembed %}
+            </div>
+            {% if loop.index is divisible by ( 2 ) %}
+                <div class="clearfix" style="margin-bottom: 2em;"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row" style="padding-left: 6px;">
+        <div class="col-xs-6" align="left">
+            {% if pagination_prev is defined %}
+                <a href="?pagination={{pagination_prev}}" class="btn btn-ukm btn-default pull-left">Nyere saker</a>
+            {% endif %}
+        </div>
+
+        <div class="col-xs-6" align="right">
+            {% if pagination_next is defined %}
+                <a href="?pagination={{pagination_next}}" class="btn btn-ukm btn-default pull-right">Eldre saker</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if page > 1 %}
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 mt-3" align="right">
+                <a href="/wp-admin/user/" class="btn btn-ukm btn-success">Tilbake til forsiden</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
