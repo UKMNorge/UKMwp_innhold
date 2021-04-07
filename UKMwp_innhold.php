@@ -34,7 +34,7 @@ class UKMwp_innhold extends Modul
 
 		wp_enqueue_script(
 			'UKMwp_innhold_script',
-			PLUGIN_PATH  . 'UKMwp_innhold/js/wp_innhold.js'
+			plugin_dir_url(__FILE__)  . 'js/wp_innhold.js'
 		);
 
 		static::hookInnholdCss();
@@ -55,7 +55,7 @@ class UKMwp_innhold extends Modul
 	public static function hookInnholdCss() {
 		wp_register_style(
 			'UKMwp_innhold_style',
-			PLUGIN_PATH . 'UKMwp_innhold/KMwp_innhold.css'
+			plugin_dir_url(__FILE__) . 'UKMwp_innhold.css'
 		);
 		return 'UKMwp_innhold_style';
 	}
