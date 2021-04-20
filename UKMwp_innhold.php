@@ -20,6 +20,11 @@ class UKMwp_innhold extends Modul
 	public static $action = 'innhold';
 	public static $path_plugin = null;
 
+	public static function registerFunctions() {
+		static::require('functions/getPage.function.php');
+		static::require('functions/getCategory.function.php');
+	}
+
 	/**
 	 * Registrer alle hooks
 	 *
