@@ -9,15 +9,24 @@
 	{% set target = '' %}
 {% endif %}
 
-<div class="clickChild news nop as-card-2 as-padding-space-3 as-margin-bottom-space-2">
-	<div class="grid_post_image" style="background-image: url('{{post.image.url}}');"></div>
+<div class="clickChild news nop as-card-2 as-padding-space-1 as-margin-bottom-space-2">
+	<div class="news-image-div">
+		<img src="{{post.image.url}}" />
+	</div>
 		
+    
+
 	<div class="header">
 		<a href="{{ link }}" {{ target }} class="clickMe">{{post.title|raw}}</a>
 	</div>
 
 	<div class="story">
-		<div class="meta">
+
+		<div class="leadContainer">
+			<p>{{post.lead|raw}}</p>
+		</div>
+		
+		<div class="meta as-card-2">
 			{% if post.meta.redirect is not defined %}
 				<div class="post-com-count-wrapper" style="float: right;">
 					<a href="{{ link }}#kommentarer" {{ target }} class="doComment">
@@ -34,10 +43,6 @@
 				<span class="likeCountContainer">(<span class="likeCount">{{ post.arrangor.getLikeCount() }}</span>)</span>
 			</div>
 			<div class="clearfix"></div>
-		</div>
-
-		<div class="leadContainer">
-			<p>{{post.lead|raw}}</p>
 		</div>
 	</div>
 </div>
